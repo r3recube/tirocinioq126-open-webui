@@ -179,42 +179,44 @@
 		<div>
 			<div class=" mb-1 text-sm font-medium">{$i18n.t('STT Settings')}</div>
 
-			{#if $config.audio.stt.engine !== 'web'}
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs font-medium">{$i18n.t('Speech-to-Text Engine')}</div>
-					<div class="flex items-center relative">
-						<select
-							class="w-fit pr-8 rounded-sm px-2 p-1 text-xs bg-transparent outline-hidden text-right"
-							bind:value={STTEngine}
-							aria-label={$i18n.t('Speech-to-Text Engine')}
-							placeholder={$i18n.t('Select an engine')}
-						>
-							<option value="">{$i18n.t('Default')}</option>
-							<option value="web">{$i18n.t('Web API')}</option>
-						</select>
+			{#if $user?.role === 'admin'}
+				{#if $config.audio.stt.engine !== 'web'}
+					<div class=" py-0.5 flex w-full justify-between">
+						<div class=" self-center text-xs font-medium">{$i18n.t('Speech-to-Text Engine')}</div>
+						<div class="flex items-center relative">
+							<select
+								class="w-fit pr-8 rounded-sm px-2 p-1 text-xs bg-transparent outline-hidden text-right"
+								bind:value={STTEngine}
+								aria-label={$i18n.t('Speech-to-Text Engine')}
+								placeholder={$i18n.t('Select an engine')}
+							>
+								<option value="">{$i18n.t('Default')}</option>
+								<option value="web">{$i18n.t('Web API')}</option>
+							</select>
+						</div>
 					</div>
-				</div>
 
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs font-medium">{$i18n.t('Language')}</div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div class=" self-center text-xs font-medium">{$i18n.t('Language')}</div>
 
-					<div class="flex items-center relative text-xs px-3">
-						<Tooltip
-							content={$i18n.t(
-								'The language of the input audio. Supplying the input language in ISO-639-1 (e.g. en) format will improve accuracy and latency. Leave blank to automatically detect the language.'
-							)}
-							placement="top"
-						>
-							<input
-								type="text"
-								bind:value={STTLanguage}
-								aria-label={$i18n.t('Speech-to-Text Language')}
-								placeholder={$i18n.t('e.g. en')}
-								class=" text-sm text-right bg-transparent dark:text-gray-300 outline-hidden"
-							/>
-						</Tooltip>
+						<div class="flex items-center relative text-xs px-3">
+							<Tooltip
+								content={$i18n.t(
+									'The language of the input audio. Supplying the input language in ISO-639-1 (e.g. en) format will improve accuracy and latency. Leave blank to automatically detect the language.'
+								)}
+								placement="top"
+							>
+								<input
+									type="text"
+									bind:value={STTLanguage}
+									aria-label={$i18n.t('Speech-to-Text Language')}
+									placeholder={$i18n.t('e.g. en')}
+									class=" text-sm text-right bg-transparent dark:text-gray-300 outline-hidden"
+								/>
+							</Tooltip>
+						</div>
 					</div>
-				</div>
+				{/if}
 			{/if}
 
 			<div class=" py-0.5 flex w-full justify-between">
@@ -243,39 +245,41 @@
 		<div>
 			<div class=" mb-1 text-sm font-medium">{$i18n.t('TTS Settings')}</div>
 
-			<div class=" py-0.5 flex w-full justify-between">
-				<div class=" self-center text-xs font-medium">{$i18n.t('Text-to-Speech Engine')}</div>
-				<div class="flex items-center relative">
-					<select
-						class="w-fit pr-8 rounded-sm px-2 p-1 text-xs bg-transparent outline-hidden text-right"
-						bind:value={TTSEngine}
-						aria-label={$i18n.t('Text-to-Speech Engine')}
-						placeholder={$i18n.t('Select an engine')}
-					>
-						<option value="">{$i18n.t('Default')}</option>
-						<option value="browser-kokoro">{$i18n.t('Kokoro.js (Browser)')}</option>
-					</select>
-				</div>
-			</div>
-
-			{#if TTSEngine === 'browser-kokoro'}
+			{#if $user?.role === 'admin'}
 				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs font-medium">{$i18n.t('Kokoro.js Dtype')}</div>
+					<div class=" self-center text-xs font-medium">{$i18n.t('Text-to-Speech Engine')}</div>
 					<div class="flex items-center relative">
 						<select
 							class="w-fit pr-8 rounded-sm px-2 p-1 text-xs bg-transparent outline-hidden text-right"
-							bind:value={TTSEngineConfig.dtype}
-							aria-label={$i18n.t('Kokoro.js Dtype')}
-							placeholder={$i18n.t('Select dtype')}
+							bind:value={TTSEngine}
+							aria-label={$i18n.t('Text-to-Speech Engine')}
+							placeholder={$i18n.t('Select an engine')}
 						>
-							<option value="" disabled selected>{$i18n.t('Select dtype')}</option>
-							<option value="fp32">fp32</option>
-							<option value="fp16">fp16</option>
-							<option value="q8">q8</option>
-							<option value="q4">q4</option>
+							<option value="">{$i18n.t('Default')}</option>
+							<option value="browser-kokoro">{$i18n.t('Kokoro.js (Browser)')}</option>
 						</select>
 					</div>
 				</div>
+
+				{#if TTSEngine === 'browser-kokoro'}
+					<div class=" py-0.5 flex w-full justify-between">
+						<div class=" self-center text-xs font-medium">{$i18n.t('Kokoro.js Dtype')}</div>
+						<div class="flex items-center relative">
+							<select
+								class="w-fit pr-8 rounded-sm px-2 p-1 text-xs bg-transparent outline-hidden text-right"
+								bind:value={TTSEngineConfig.dtype}
+								aria-label={$i18n.t('Kokoro.js Dtype')}
+								placeholder={$i18n.t('Select dtype')}
+							>
+								<option value="" disabled selected>{$i18n.t('Select dtype')}</option>
+								<option value="fp32">fp32</option>
+								<option value="fp16">fp16</option>
+								<option value="q8">q8</option>
+								<option value="q4">q4</option>
+							</select>
+						</div>
+					</div>
+				{/if}
 			{/if}
 
 			<div class=" py-0.5 flex w-full justify-between">
@@ -378,15 +382,17 @@
 						</select>
 					</div>
 				</div>
-				<div class="flex items-center justify-between my-1.5">
-					<div class="text-xs">
-						{$i18n.t('Allow non-local voices')}
-					</div>
+				{#if $user?.role === 'admin'}
+					<div class="flex items-center justify-between my-1.5">
+						<div class="text-xs">
+							{$i18n.t('Allow non-local voices')}
+						</div>
 
-					<div class="mt-1">
-						<Switch bind:state={nonLocalVoices} />
+						<div class="mt-1">
+							<Switch bind:state={nonLocalVoices} />
+						</div>
 					</div>
-				</div>
+				{/if}
 			</div>
 		{:else if $config.audio.tts.engine !== ''}
 			<div>

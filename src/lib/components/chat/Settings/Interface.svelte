@@ -451,62 +451,64 @@
 				</div>
 			</div>
 
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div id="notification-sound-label" class=" self-center text-xs">
-						{$i18n.t('Notification Sound')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="notification-sound-label"
-							tooltip={true}
-							bind:state={notificationSound}
-							on:change={() => {
-								saveSettings({ notificationSound });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			{#if notificationSound}
+			{#if $user?.role === 'admin'}
 				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="play-notification-sound-label" class=" self-center text-xs">
-							{$i18n.t('Always Play Notification Sound')}
+					<div class="py-0.5 flex w-full justify-between">
+						<div id="notification-sound-label" class=" self-center text-xs">
+							{$i18n.t('Notification Sound')}
 						</div>
 
 						<div class="flex items-center gap-2 p-1">
 							<Switch
-								ariaLabelledbyId="play-notification-sound-label"
+								ariaLabelledbyId="notification-sound-label"
 								tooltip={true}
-								bind:state={notificationSoundAlways}
+								bind:state={notificationSound}
 								on:change={() => {
-									saveSettings({ notificationSoundAlways });
+									saveSettings({ notificationSound });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+
+				{#if notificationSound}
+					<div>
+						<div class=" py-0.5 flex w-full justify-between">
+							<div id="play-notification-sound-label" class=" self-center text-xs">
+								{$i18n.t('Always Play Notification Sound')}
+							</div>
+
+							<div class="flex items-center gap-2 p-1">
+								<Switch
+									ariaLabelledbyId="play-notification-sound-label"
+									tooltip={true}
+									bind:state={notificationSoundAlways}
+									on:change={() => {
+										saveSettings({ notificationSoundAlways });
+									}}
+								/>
+							</div>
+						</div>
+					</div>
+				{/if}
+
+				<div>
+					<div id="allow-user-location-label" class=" py-0.5 flex w-full justify-between">
+						<div class=" self-center text-xs">{$i18n.t('Allow User Location')}</div>
+
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="allow-user-location-label"
+								tooltip={true}
+								bind:state={userLocation}
+								on:change={() => {
+									toggleUserLocation();
 								}}
 							/>
 						</div>
 					</div>
 				</div>
 			{/if}
-
-			<div>
-				<div id="allow-user-location-label" class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs">{$i18n.t('Allow User Location')}</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="allow-user-location-label"
-							tooltip={true}
-							bind:state={userLocation}
-							on:change={() => {
-								toggleUserLocation();
-							}}
-						/>
-					</div>
-				</div>
-			</div>
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -588,133 +590,135 @@
 
 			<div class=" my-2 text-sm font-medium">{$i18n.t('Chat')}</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="enable-message-queue-label" class=" self-center text-xs">
-						{$i18n.t('Enable Message Queue')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="enable-message-queue-label"
-							tooltip={true}
-							bind:state={enableMessageQueue}
-							on:change={() => {
-								saveSettings({ enableMessageQueue });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-direction-label" class=" self-center text-xs">
-						{$i18n.t('Chat direction')}
-					</div>
-
-					<button
-						aria-labelledby="chat-direction-label chat-direction-mode"
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={toggleChangeChatDirection}
-						type="button"
-					>
-						<span class="ml-2 self-center" id="chat-direction-mode">
-							{chatDirection === 'LTR'
-								? $i18n.t('LTR')
-								: chatDirection === 'RTL'
-									? $i18n.t('RTL')
-									: $i18n.t('Auto')}
-						</span>
-					</button>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="landing-page-mode-label" class=" self-center text-xs">
-						{$i18n.t('Landing Page Mode')}
-					</div>
-
-					<button
-						aria-labelledby="landing-page-mode-label notification-sound-state"
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							toggleLandingPageMode();
-						}}
-						type="button"
-					>
-						<span class="ml-2 self-center" id="notification-sound-state"
-							>{landingPageMode === '' ? $i18n.t('Default') : $i18n.t('Chat')}</span
-						>
-					</button>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-background-label" class=" self-center text-xs">
-						{$i18n.t('Chat Background Image')}
-					</div>
-
-					<button
-						aria-labelledby="chat-background-label background-image-url-state"
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							if (backgroundImageUrl !== null) {
-								backgroundImageUrl = null;
-								saveSettings({ backgroundImageUrl });
-							} else {
-								filesInputElement.click();
-							}
-						}}
-						type="button"
-					>
-						<span class="ml-2 self-center" id="background-image-url-state"
-							>{backgroundImageUrl !== null ? $i18n.t('Reset') : $i18n.t('Upload')}</span
-						>
-					</button>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-bubble-ui-label" class=" self-center text-xs">
-						{$i18n.t('Chat Bubble UI')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							tooltip={true}
-							ariaLabelledbyId="chat-bubble-ui-label"
-							bind:state={chatBubble}
-							on:change={() => {
-								saveSettings({ chatBubble });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			{#if !$settings.chatBubble}
+			{#if $user?.role === 'admin'}
 				<div>
 					<div class=" py-0.5 flex w-full justify-between">
-						<div id="chat-bubble-username-label" class=" self-center text-xs">
-							{$i18n.t('Display the username instead of You in the Chat')}
+						<div id="enable-message-queue-label" class=" self-center text-xs">
+							{$i18n.t('Enable Message Queue')}
 						</div>
 
 						<div class="flex items-center gap-2 p-1">
 							<Switch
-								ariaLabelledbyId="chat-bubble-username-label"
+								ariaLabelledbyId="enable-message-queue-label"
 								tooltip={true}
-								bind:state={showUsername}
+								bind:state={enableMessageQueue}
 								on:change={() => {
-									saveSettings({ showUsername });
+									saveSettings({ enableMessageQueue });
 								}}
 							/>
 						</div>
 					</div>
 				</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="chat-direction-label" class=" self-center text-xs">
+							{$i18n.t('Chat direction')}
+						</div>
+
+						<button
+							aria-labelledby="chat-direction-label chat-direction-mode"
+							class="p-1 px-3 text-xs flex rounded-sm transition"
+							on:click={toggleChangeChatDirection}
+							type="button"
+						>
+							<span class="ml-2 self-center" id="chat-direction-mode">
+								{chatDirection === 'LTR'
+									? $i18n.t('LTR')
+									: chatDirection === 'RTL'
+										? $i18n.t('RTL')
+										: $i18n.t('Auto')}
+							</span>
+						</button>
+					</div>
+				</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="landing-page-mode-label" class=" self-center text-xs">
+							{$i18n.t('Landing Page Mode')}
+						</div>
+
+						<button
+							aria-labelledby="landing-page-mode-label notification-sound-state"
+							class="p-1 px-3 text-xs flex rounded-sm transition"
+							on:click={() => {
+								toggleLandingPageMode();
+							}}
+							type="button"
+						>
+							<span class="ml-2 self-center" id="notification-sound-state"
+								>{landingPageMode === '' ? $i18n.t('Default') : $i18n.t('Chat')}</span
+							>
+						</button>
+					</div>
+				</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="chat-background-label" class=" self-center text-xs">
+							{$i18n.t('Chat Background Image')}
+						</div>
+
+						<button
+							aria-labelledby="chat-background-label background-image-url-state"
+							class="p-1 px-3 text-xs flex rounded-sm transition"
+							on:click={() => {
+								if (backgroundImageUrl !== null) {
+									backgroundImageUrl = null;
+									saveSettings({ backgroundImageUrl });
+								} else {
+									filesInputElement.click();
+								}
+							}}
+							type="button"
+						>
+							<span class="ml-2 self-center" id="background-image-url-state"
+								>{backgroundImageUrl !== null ? $i18n.t('Reset') : $i18n.t('Upload')}</span
+							>
+						</button>
+					</div>
+				</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="chat-bubble-ui-label" class=" self-center text-xs">
+							{$i18n.t('Chat Bubble UI')}
+						</div>
+
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								tooltip={true}
+								ariaLabelledbyId="chat-bubble-ui-label"
+								bind:state={chatBubble}
+								on:change={() => {
+									saveSettings({ chatBubble });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+
+				{#if !$settings.chatBubble}
+					<div>
+						<div class=" py-0.5 flex w-full justify-between">
+							<div id="chat-bubble-username-label" class=" self-center text-xs">
+								{$i18n.t('Display the username instead of You in the Chat')}
+							</div>
+
+							<div class="flex items-center gap-2 p-1">
+								<Switch
+									ariaLabelledbyId="chat-bubble-username-label"
+									tooltip={true}
+									bind:state={showUsername}
+									on:change={() => {
+										saveSettings({ showUsername });
+									}}
+								/>
+							</div>
+						</div>
+					</div>
+				{/if}
 			{/if}
 
 			<div>
@@ -736,7 +740,7 @@
 				</div>
 			</div>
 
-			{#if $user.role === 'admin' || $user?.permissions?.chat?.temporary}
+			{#if $user?.role === 'admin'}
 				<div>
 					<div class=" py-0.5 flex w-full justify-between">
 						<div id="temp-chat-default-label" class=" self-center text-xs">
@@ -757,24 +761,26 @@
 				</div>
 			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="fade-streaming-label" class=" self-center text-xs">
-						{$i18n.t('Fade Effect for Streaming Text')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="fade-streaming-label" class=" self-center text-xs">
+							{$i18n.t('Fade Effect for Streaming Text')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="fade-streaming-label"
-							tooltip={true}
-							bind:state={chatFadeStreamingText}
-							on:change={() => {
-								saveSettings({ chatFadeStreamingText });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="fade-streaming-label"
+								tooltip={true}
+								bind:state={chatFadeStreamingText}
+								on:change={() => {
+									saveSettings({ chatFadeStreamingText });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -795,119 +801,121 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs" id="follow-up-auto-generation-label">
-						{$i18n.t('Follow-Up Auto-Generation')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div class=" self-center text-xs" id="follow-up-auto-generation-label">
+							{$i18n.t('Follow-Up Auto-Generation')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="follow-up-auto-generation-label"
-							tooltip={true}
-							bind:state={autoFollowUps}
-							on:change={() => {
-								saveSettings({ autoFollowUps });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="follow-up-auto-generation-label"
+								tooltip={true}
+								bind:state={autoFollowUps}
+								on:change={() => {
+									saveSettings({ autoFollowUps });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-tags-label" class=" self-center text-xs">
-						{$i18n.t('Chat Tags Auto-Generation')}
-					</div>
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="chat-tags-label" class=" self-center text-xs">
+							{$i18n.t('Chat Tags Auto-Generation')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="chat-tags-label"
-							tooltip={true}
-							bind:state={autoTags}
-							on:change={() => {
-								saveSettings({ autoTags });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="auto-copy-label" class=" self-center text-xs">
-						{$i18n.t('Auto-Copy Response to Clipboard')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="auto-copy-label"
-							tooltip={true}
-							bind:state={responseAutoCopy}
-							on:change={() => {
-								toggleResponseAutoCopy();
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="chat-tags-label"
+								tooltip={true}
+								bind:state={autoTags}
+								on:change={() => {
+									saveSettings({ autoTags });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="insert-suggestion-prompt-label" class=" self-center text-xs">
-						{$i18n.t('Insert Suggestion Prompt to Input')}
-					</div>
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="auto-copy-label" class=" self-center text-xs">
+							{$i18n.t('Auto-Copy Response to Clipboard')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="insert-suggestion-prompt-label"
-							tooltip={true}
-							bind:state={insertSuggestionPrompt}
-							on:change={() => {
-								saveSettings({ insertSuggestionPrompt });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="keep-follow-up-prompts-label" class=" self-center text-xs">
-						{$i18n.t('Keep Follow-Up Prompts in Chat')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="keep-follow-up-prompts-label"
-							tooltip={true}
-							bind:state={keepFollowUpPrompts}
-							on:change={() => {
-								saveSettings({ keepFollowUpPrompts });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="auto-copy-label"
+								tooltip={true}
+								bind:state={responseAutoCopy}
+								on:change={() => {
+									toggleResponseAutoCopy();
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="insert-follow-up-prompt-label" class=" self-center text-xs">
-						{$i18n.t('Insert Follow-Up Prompt to Input')}
-					</div>
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="insert-suggestion-prompt-label" class=" self-center text-xs">
+							{$i18n.t('Insert Suggestion Prompt to Input')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="insert-follow-up-prompt-label"
-							tooltip={true}
-							bind:state={insertFollowUpPrompt}
-							on:change={() => {
-								saveSettings({ insertFollowUpPrompt });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="insert-suggestion-prompt-label"
+								tooltip={true}
+								bind:state={insertSuggestionPrompt}
+								on:change={() => {
+									saveSettings({ insertSuggestionPrompt });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="keep-follow-up-prompts-label" class=" self-center text-xs">
+							{$i18n.t('Keep Follow-Up Prompts in Chat')}
+						</div>
+
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="keep-follow-up-prompts-label"
+								tooltip={true}
+								bind:state={keepFollowUpPrompts}
+								on:change={() => {
+									saveSettings({ keepFollowUpPrompts });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="insert-follow-up-prompt-label" class=" self-center text-xs">
+							{$i18n.t('Insert Follow-Up Prompt to Input')}
+						</div>
+
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="insert-follow-up-prompt-label"
+								tooltip={true}
+								bind:state={insertFollowUpPrompt}
+								on:change={() => {
+									saveSettings({ insertFollowUpPrompt });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+			{/if}
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -947,24 +955,26 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="always-expand-label" class=" self-center text-xs">
-						{$i18n.t('Always Expand Details')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="always-expand-label" class=" self-center text-xs">
+							{$i18n.t('Always Expand Details')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="always-expand-label"
-							tooltip={true}
-							bind:state={expandDetails}
-							on:change={() => {
-								saveSettings({ expandDetails });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="always-expand-label"
+								tooltip={true}
+								bind:state={expandDetails}
+								on:change={() => {
+									saveSettings({ expandDetails });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -985,94 +995,96 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="keep-followup-prompts-label" class=" self-center text-xs">
-						{$i18n.t('Display Multi-model Responses in Tabs')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="keep-followup-prompts-label" class=" self-center text-xs">
+							{$i18n.t('Display Multi-model Responses in Tabs')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="keep-followup-prompts-label"
-							tooltip={true}
-							bind:state={displayMultiModelResponsesInTabs}
-							on:change={() => {
-								saveSettings({ displayMultiModelResponsesInTabs });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="scroll-on-branch-change-label" class=" self-center text-xs">
-						{$i18n.t('Scroll On Branch Change')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="scroll-on-branch-change-label"
-							tooltip={true}
-							bind:state={scrollOnBranchChange}
-							on:change={() => {
-								saveSettings({ scrollOnBranchChange });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="stylized-pdf-export-label" class=" self-center text-xs">
-						{$i18n.t('Stylized PDF Export')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="stylized-pdf-export-label"
-							tooltip={true}
-							bind:state={stylizedPdfExport}
-							on:change={() => {
-								saveSettings({ stylizedPdfExport });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<label id="floating-action-buttons-label" class=" self-center text-xs">
-						{$i18n.t('Floating Quick Actions')}
-					</label>
-
-					<div class="flex items-center gap-3 p-1">
-						{#if showFloatingActionButtons}
-							<button
-								class="text-xs text-gray-700 dark:text-gray-400 underline"
-								type="button"
-								aria-label={$i18n.t('Open Modal To Manage Floating Quick Actions')}
-								on:click={() => {
-									showManageFloatingActionButtonsModal = true;
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="keep-followup-prompts-label"
+								tooltip={true}
+								bind:state={displayMultiModelResponsesInTabs}
+								on:change={() => {
+									saveSettings({ displayMultiModelResponsesInTabs });
 								}}
-							>
-								{$i18n.t('Manage')}
-							</button>
-						{/if}
-
-						<Switch
-							ariaLabelledbyId="floating-action-buttons-label"
-							tooltip={true}
-							bind:state={showFloatingActionButtons}
-							on:change={() => {
-								saveSettings({ showFloatingActionButtons });
-							}}
-						/>
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="scroll-on-branch-change-label" class=" self-center text-xs">
+							{$i18n.t('Scroll On Branch Change')}
+						</div>
+
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="scroll-on-branch-change-label"
+								tooltip={true}
+								bind:state={scrollOnBranchChange}
+								on:change={() => {
+									saveSettings({ scrollOnBranchChange });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="stylized-pdf-export-label" class=" self-center text-xs">
+							{$i18n.t('Stylized PDF Export')}
+						</div>
+
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="stylized-pdf-export-label"
+								tooltip={true}
+								bind:state={stylizedPdfExport}
+								on:change={() => {
+									saveSettings({ stylizedPdfExport });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<label id="floating-action-buttons-label" class=" self-center text-xs">
+							{$i18n.t('Floating Quick Actions')}
+						</label>
+
+						<div class="flex items-center gap-3 p-1">
+							{#if showFloatingActionButtons}
+								<button
+									class="text-xs text-gray-700 dark:text-gray-400 underline"
+									type="button"
+									aria-label={$i18n.t('Open Modal To Manage Floating Quick Actions')}
+									on:click={() => {
+										showManageFloatingActionButtonsModal = true;
+									}}
+								>
+									{$i18n.t('Manage')}
+								</button>
+							{/if}
+
+							<Switch
+								ariaLabelledbyId="floating-action-buttons-label"
+								tooltip={true}
+								bind:state={showFloatingActionButtons}
+								on:change={() => {
+									saveSettings({ showFloatingActionButtons });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+			{/if}
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -1240,43 +1252,45 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="iframe-sandbox-allow-same-origin-label" class=" self-center text-xs">
-						{$i18n.t('iframe Sandbox Allow Same Origin')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="iframe-sandbox-allow-same-origin-label" class=" self-center text-xs">
+							{$i18n.t('iframe Sandbox Allow Same Origin')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="iframe-sandbox-allow-same-origin-label"
-							tooltip={true}
-							bind:state={iframeSandboxAllowSameOrigin}
-							on:change={() => {
-								saveSettings({ iframeSandboxAllowSameOrigin });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="iframe-sandbox-allow-same-origin-label"
+								tooltip={true}
+								bind:state={iframeSandboxAllowSameOrigin}
+								on:change={() => {
+									saveSettings({ iframeSandboxAllowSameOrigin });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="iframe-sandbox-allow-forms-label" class=" self-center text-xs">
-						{$i18n.t('iframe Sandbox Allow Forms')}
-					</div>
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="iframe-sandbox-allow-forms-label" class=" self-center text-xs">
+							{$i18n.t('iframe Sandbox Allow Forms')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="iframe-sandbox-allow-forms-label"
-							tooltip={true}
-							bind:state={iframeSandboxAllowForms}
-							on:change={() => {
-								saveSettings({ iframeSandboxAllowForms });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="iframe-sandbox-allow-forms-label"
+								tooltip={true}
+								bind:state={iframeSandboxAllowForms}
+								on:change={() => {
+									saveSettings({ iframeSandboxAllowForms });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			<div class=" my-2 text-sm font-medium">{$i18n.t('Voice')}</div>
 
@@ -1299,24 +1313,26 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="display-emoji-label" class=" self-center text-xs">
-						{$i18n.t('Display Emoji in Call')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="display-emoji-label" class=" self-center text-xs">
+							{$i18n.t('Display Emoji in Call')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="display-emoji-label"
-							tooltip={true}
-							bind:state={showEmojiInCall}
-							on:change={() => {
-								saveSettings({ showEmojiInCall });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="display-emoji-label"
+								tooltip={true}
+								bind:state={showEmojiInCall}
+								on:change={() => {
+									saveSettings({ showEmojiInCall });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			<div class=" my-2 text-sm font-medium">{$i18n.t('File')}</div>
 
