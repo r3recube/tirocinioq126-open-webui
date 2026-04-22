@@ -259,37 +259,39 @@
 				</div>
 			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs font-medium">{$i18n.t('Notifications')}</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div class=" self-center text-xs font-medium">{$i18n.t('Notifications')}</div>
 
-					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							toggleNotification();
-						}}
-						type="button"
-						role="switch"
-						aria-checked={notificationEnabled}
-					>
-						{#if notificationEnabled === true}
-							<span class="ml-2 self-center">{$i18n.t('On')}</span>
-						{:else}
-							<span class="ml-2 self-center">{$i18n.t('Off')}</span>
-						{/if}
-					</button>
+						<button
+							class="p-1 px-3 text-xs flex rounded-sm transition"
+							on:click={() => {
+								toggleNotification();
+							}}
+							type="button"
+							role="switch"
+							aria-checked={notificationEnabled}
+						>
+							{#if notificationEnabled === true}
+								<span class="ml-2 self-center">{$i18n.t('On')}</span>
+							{:else}
+								<span class="ml-2 self-center">{$i18n.t('Off')}</span>
+							{/if}
+						</button>
+					</div>
 				</div>
-			</div>
+			{/if}
 		</div>
 
-		{#if $user?.role === 'admin' || (($user?.permissions.chat?.controls ?? true) && ($user?.permissions.chat?.system_prompt ?? true))}
+		{#if $user?.role === 'admin'}
 			<hr class="border-gray-100/30 dark:border-gray-850/30 my-3" />
 
 			<div>
 				<div class=" my-2.5 text-sm font-medium">{$i18n.t('System Prompt')}</div>
 				<Textarea
 					bind:value={system}
-					className={'w-full text-sm outline-hidden resize-vertical' +
+					className={'w-full text-sm outline-hidden ' +
 						($settings.highContrastMode
 							? ' p-2.5 border-2 border-gray-300 dark:border-gray-700 rounded-lg bg-transparent text-gray-900 dark:text-gray-100 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 overflow-y-hidden'
 							: '  dark:text-gray-300 ')}

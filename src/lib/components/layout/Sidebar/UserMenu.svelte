@@ -363,7 +363,7 @@
 				<div class=" self-center truncate">{$i18n.t('Sign Out')}</div>
 			</button>
 
-			{#if showActiveUsers && ($config?.features?.enable_public_active_users_count || role === 'admin') && usage}
+			{#if showActiveUsers && role === 'admin' && usage}
 				{#if usage?.user_count}
 					<hr class=" border-gray-50/30 dark:border-gray-800/30 my-1 p-0" />
 
