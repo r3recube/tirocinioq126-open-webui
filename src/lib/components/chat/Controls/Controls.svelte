@@ -121,7 +121,7 @@
 				<hr class="my-2 border-gray-50 dark:border-gray-700/10" />
 			{/if}
 
-			{#if $user?.role === 'admin' || ($user?.permissions.chat?.params ?? true)}
+			{#if $user?.role === 'admin'}
 				<Collapsible
 					title={$i18n.t('Advanced Params')}
 					bind:open={showAdvancedParams}
