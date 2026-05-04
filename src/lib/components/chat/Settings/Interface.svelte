@@ -331,7 +331,7 @@
 
 	<div class=" space-y-3 overflow-y-scroll max-h-[28rem] md:max-h-full">
 		<div>
-			<h1 class=" mb-2 text-sm font-medium">{$i18n.t('UI')}</h1>
+			<h1 class=" mb-2 text-sm font-medium">{$i18n.t('Interfaccia')}</h1>
 
 			<div>
 				<div class="py-0.5 flex w-full justify-between">
@@ -529,24 +529,26 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="copy-formatted-label" class=" self-center text-xs">
-						{$i18n.t('Copy Formatted Text')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="copy-formatted-label" class=" self-center text-xs">
+							{$i18n.t('Copy Formatted Text')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="copy-formatted-label"
-							tooltip={true}
-							bind:state={copyFormatted}
-							on:change={() => {
-								saveSettings({ copyFormatted });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="copy-formatted-label"
+								tooltip={true}
+								bind:state={copyFormatted}
+								on:change={() => {
+									saveSettings({ copyFormatted });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			{#if $user?.role === 'admin'}
 				<div>
@@ -721,24 +723,26 @@
 				{/if}
 			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="widescreen-mode-label" class=" self-center text-xs">
-						{$i18n.t('Widescreen Mode')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="widescreen-mode-label" class=" self-center text-xs">
+							{$i18n.t('Widescreen Mode')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="widescreen-mode-label"
-							tooltip={true}
-							bind:state={widescreenMode}
-							on:change={() => {
-								saveSettings({ widescreenMode });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="widescreen-mode-label"
+								tooltip={true}
+								bind:state={widescreenMode}
+								on:change={() => {
+									saveSettings({ widescreenMode });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			{#if $user?.role === 'admin'}
 				<div>
@@ -917,43 +921,47 @@
 				</div>
 			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="regenerate-menu-label" class=" self-center text-xs">
-						{$i18n.t('Regenerate Menu')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="regenerate-menu-label" class=" self-center text-xs">
+							{$i18n.t('Regenerate Menu')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="regenerate-menu-label"
-							tooltip={true}
-							bind:state={regenerateMenu}
-							on:change={() => {
-								saveSettings({ regenerateMenu });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="regenerate-menu-label"
+								tooltip={true}
+								bind:state={regenerateMenu}
+								on:change={() => {
+									saveSettings({ regenerateMenu });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="always-collapse-label" class=" self-center text-xs">
-						{$i18n.t('Always Collapse Code Blocks')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="always-collapse-label" class=" self-center text-xs">
+							{$i18n.t('Always Collapse Code Blocks')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="always-collapse-label"
-							tooltip={true}
-							bind:state={collapseCodeBlocks}
-							on:change={() => {
-								saveSettings({ collapseCodeBlocks });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="always-collapse-label"
+								tooltip={true}
+								bind:state={collapseCodeBlocks}
+								on:change={() => {
+									saveSettings({ collapseCodeBlocks });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			{#if $user?.role === 'admin'}
 				<div>
@@ -976,24 +984,26 @@
 				</div>
 			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="render-markdown-in-previews-label" class=" self-center text-xs">
-						{$i18n.t('Render Markdown in Previews')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="render-markdown-in-previews-label" class=" self-center text-xs">
+							{$i18n.t('Render Markdown in Previews')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="render-markdown-in-previews-label"
-							tooltip={true}
-							bind:state={renderMarkdownInPreviews}
-							on:change={() => {
-								saveSettings({ renderMarkdownInPreviews });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="render-markdown-in-previews-label"
+								tooltip={true}
+								bind:state={renderMarkdownInPreviews}
+								on:change={() => {
+									saveSettings({ renderMarkdownInPreviews });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
 			{#if $user?.role === 'admin'}
 				<div>
@@ -1132,26 +1142,28 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="rich-input-label" class=" self-center text-xs">
-						{$i18n.t('Rich Text Input for Chat')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="rich-input-label" class=" self-center text-xs">
+							{$i18n.t('Rich Text Input for Chat')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							tooltip={true}
-							ariaLabelledbyId="rich-input-label"
-							bind:state={richTextInput}
-							on:change={() => {
-								saveSettings({ richTextInput });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								tooltip={true}
+								ariaLabelledbyId="rich-input-label"
+								bind:state={richTextInput}
+								on:change={() => {
+									saveSettings({ richTextInput });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
-			{#if $config?.features?.enable_autocomplete_generation}
+			{#if $config?.features?.enable_autocomplete_generation && $user?.role === 'admin'}
 				<div>
 					<div class=" py-0.5 flex w-full justify-between">
 						<div id="prompt-autocompletion-label" class=" self-center text-xs">
@@ -1172,7 +1184,7 @@
 				</div>
 			{/if}
 
-			{#if richTextInput}
+			{#if richTextInput && $user?.role === 'admin'}
 				<div>
 					<div class=" py-0.5 flex w-full justify-between">
 						<div id="show-formatting-toolbar-label" class=" self-center text-xs">
@@ -1212,45 +1224,51 @@
 				</div>
 			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="paste-large-label" class=" self-center text-xs">
-						{$i18n.t('Paste Large Text as File')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="paste-large-label" class=" self-center text-xs">
+							{$i18n.t('Paste Large Text as File')}
+						</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							tooltip={true}
-							ariaLabelledbyId="paste-large-label"
-							bind:state={largeTextAsFile}
-							on:change={() => {
-								saveSettings({ largeTextAsFile });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div class=" my-2 text-sm font-medium">{$i18n.t('Artifacts')}</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="detect-artifacts-label" class=" self-center text-xs">
-						{$i18n.t('Detect Artifacts Automatically')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="detect-artifacts-label"
-							tooltip={true}
-							bind:state={detectArtifacts}
-							on:change={() => {
-								saveSettings({ detectArtifacts });
-							}}
-						/>
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								tooltip={true}
+								ariaLabelledbyId="paste-large-label"
+								bind:state={largeTextAsFile}
+								on:change={() => {
+									saveSettings({ largeTextAsFile });
+								}}
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
+
+			{#if $user?.role === 'admin'}
+				<div class=" my-2 text-sm font-medium">{$i18n.t('Artifacts')}</div>
+			{/if}
+
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="detect-artifacts-label" class=" self-center text-xs">
+							{$i18n.t('Detect Artifacts Automatically')}
+						</div>
+
+						<div class="flex items-center gap-2 p-1">
+							<Switch
+								ariaLabelledbyId="detect-artifacts-label"
+								tooltip={true}
+								bind:state={detectArtifacts}
+								on:change={() => {
+									saveSettings({ detectArtifacts });
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+			{/if}
 
 			{#if $user?.role === 'admin'}
 				<div>
@@ -1334,41 +1352,45 @@
 				</div>
 			{/if}
 
-			<div class=" my-2 text-sm font-medium">{$i18n.t('File')}</div>
+			{#if $user?.role === 'admin'}
+				<div class=" my-2 text-sm font-medium">{$i18n.t('File')}</div>
+			{/if}
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="image-compression-label" class=" self-center text-xs">
-						{$i18n.t('Image Compression')}
-					</div>
+			{#if $user?.role === 'admin'}
+				<div>
+					<div class=" py-0.5 flex w-full justify-between">
+						<div id="image-compression-label" class=" self-center text-xs">
+							{$i18n.t('Image Compression')}
+						</div>
 
-					<div class="flex items-center gap-3 p-1">
-						{#if imageCompression}
-							<button
-								class="text-xs text-gray-700 dark:text-gray-400 underline"
-								type="button"
-								aria-label={$i18n.t('Open Modal To Manage Image Compression')}
-								on:click={() => {
-									showManageImageCompressionModal = true;
+						<div class="flex items-center gap-3 p-1">
+							{#if imageCompression}
+								<button
+									class="text-xs text-gray-700 dark:text-gray-400 underline"
+									type="button"
+									aria-label={$i18n.t('Open Modal To Manage Image Compression')}
+									on:click={() => {
+										showManageImageCompressionModal = true;
+									}}
+								>
+									{$i18n.t('Manage')}
+								</button>
+							{/if}
+
+							<Switch
+								ariaLabelledbyId="image-compression-label"
+								tooltip={true}
+								bind:state={imageCompression}
+								on:change={() => {
+									saveSettings({ imageCompression });
 								}}
-							>
-								{$i18n.t('Manage')}
-							</button>
-						{/if}
-
-						<Switch
-							ariaLabelledbyId="image-compression-label"
-							tooltip={true}
-							bind:state={imageCompression}
-							on:change={() => {
-								saveSettings({ imageCompression });
-							}}
-						/>
+							/>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 
-			{#if imageCompression}
+			{#if imageCompression && $user?.role === 'admin'}
 				<div>
 					<div class=" py-0.5 flex w-full justify-between">
 						<div id="image-compression-in-channels-label" class=" self-center text-xs">
