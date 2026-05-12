@@ -175,7 +175,7 @@
 							: _theme === 'her'
 								? '#983724'
 								: _theme === 'recube'
-									? '#1B3B3D'
+									? '#00243E'
 									: '#ffffff'
 				);
 			}
@@ -192,10 +192,10 @@
 			document.documentElement.style.setProperty('--color-gray-950', '#000000');
 			document.documentElement.classList.add('dark');
 		} else if (_theme === 'recube') {
-			document.documentElement.style.setProperty('--color-gray-800', '#2C5E60');
-			document.documentElement.style.setProperty('--color-gray-850', '#255557');
-			document.documentElement.style.setProperty('--color-gray-900', '#1E4E50');
-			document.documentElement.style.setProperty('--color-gray-950', '#1B3B3D');
+			document.documentElement.style.setProperty('--color-gray-800', '#3D97AD');
+			document.documentElement.style.setProperty('--color-gray-850', '#026172');
+			document.documentElement.style.setProperty('--color-gray-900', '#026172');
+			document.documentElement.style.setProperty('--color-gray-950', '#00243E');
 			document.documentElement.classList.add('dark');
 			document.documentElement.classList.add('recube');
 		}
@@ -213,7 +213,7 @@
 <div class="flex flex-col h-full justify-between text-sm" id="tab-general">
 	<div class="  overflow-y-scroll max-h-[28rem] md:max-h-full">
 		<div class="">
-			<div class=" mb-1 text-sm font-medium">{$i18n.t('WebUI Settings')}</div>
+			<div class=" mb-1 text-sm font-medium">{$i18n.t('Settings')}</div>
 
 			<div class="flex w-full justify-between">
 				<div class=" self-center text-xs font-medium">{$i18n.t('Theme')}</div>
@@ -343,7 +343,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
-			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-orange-500 recube:text-black recube:hover:bg-orange-600 transition rounded-full"
+			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[#EBB700] recube:text-black recube:hover:bg-[#EC9400] transition rounded-full"
 			on:click={() => {
 				saveHandler();
 			}}
