@@ -14,7 +14,7 @@
 	export let getModels: Function;
 
 	// General
-	let themes = ['dark', 'light', 'oled-dark'];
+	let themes = ['dark', 'light', 'oled-dark', 'recube'];
 	let selectedTheme = 'system';
 
 	let languages: Awaited<ReturnType<typeof getLanguages>> = [];
@@ -124,13 +124,20 @@
 	});
 
 	const applyTheme = (_theme: string) => {
-		let themeToApply = _theme === 'oled-dark' ? 'dark' : _theme === 'her' ? 'light' : _theme;
+		let themeToApply =
+			_theme === 'oled-dark'
+				? 'dark'
+				: _theme === 'her'
+					? 'light'
+					: _theme === 'recube'
+						? 'dark'
+						: _theme;
 
 		if (_theme === 'system') {
 			themeToApply = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		}
 
-		if (themeToApply === 'dark' && !_theme.includes('oled')) {
+		if (themeToApply === 'dark' && !_theme.includes('oled') && _theme !== 'recube') {
 			document.documentElement.style.setProperty('--color-gray-800', '#333');
 			document.documentElement.style.setProperty('--color-gray-850', '#262626');
 			document.documentElement.style.setProperty('--color-gray-900', '#171717');
@@ -167,7 +174,9 @@
 							? '#000000'
 							: _theme === 'her'
 								? '#983724'
-								: '#ffffff'
+								: _theme === 'recube'
+									? '#1B3B3D'
+									: '#ffffff'
 				);
 			}
 		}
@@ -182,6 +191,13 @@
 			document.documentElement.style.setProperty('--color-gray-900', '#000000');
 			document.documentElement.style.setProperty('--color-gray-950', '#000000');
 			document.documentElement.classList.add('dark');
+		} else if (_theme === 'recube') {
+			document.documentElement.style.setProperty('--color-gray-800', '#2C5E60');
+			document.documentElement.style.setProperty('--color-gray-850', '#255557');
+			document.documentElement.style.setProperty('--color-gray-900', '#1E4E50');
+			document.documentElement.style.setProperty('--color-gray-950', '#1B3B3D');
+			document.documentElement.classList.add('dark');
+			document.documentElement.classList.add('recube');
 		}
 
 		console.log(_theme);
@@ -214,6 +230,7 @@
 						<option value="dark">🌑 {$i18n.t('Dark')}</option>
 						<option value="oled-dark">🌃 {$i18n.t('OLED Dark')}</option>
 						<option value="light">☀️ {$i18n.t('Light')}</option>
+						<option value="recube">Recube</option>
 						{#if $config?.features?.enable_easter_eggs}
 							<option value="her">🌷 Her</option>
 						{/if}
@@ -326,7 +343,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
-			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
+			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-orange-500 recube:text-black recube:hover:bg-orange-600 transition rounded-full"
 			on:click={() => {
 				saveHandler();
 			}}

@@ -637,7 +637,7 @@
 									selectedTab === 'general'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -661,7 +661,7 @@
 									selectedTab === 'interface'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -686,7 +686,7 @@
 									selectedTab === 'connections'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -712,7 +712,7 @@
 									selectedTab === 'tools'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -737,7 +737,7 @@
 									selectedTab === 'personalization'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -761,7 +761,7 @@
 									selectedTab === 'audio'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -785,7 +785,7 @@
 									selectedTab === 'data_controls'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -809,7 +809,7 @@
 									selectedTab === 'account'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
@@ -833,7 +833,7 @@
 									selectedTab === 'about'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
+											: 'recube:text-orange-500'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
 											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'

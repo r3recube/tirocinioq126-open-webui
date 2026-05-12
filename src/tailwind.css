@@ -91,3 +91,4 @@
 }
 
 @custom-variant hover (&:hover);
+@custom-variant recube (.recube &);
