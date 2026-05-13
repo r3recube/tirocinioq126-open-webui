@@ -7,7 +7,7 @@
 	export let show = true;
 	export let size = 'md';
 	export let containerClassName = 'p-3';
-	export let className = 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm rounded-4xl';
+	export let className = 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm rounded-4xl recube:border-2 recube:border-[#EBB700]';
 
 	let modalElement = null;
 	let mounted = false;
