@@ -481,7 +481,7 @@
 	const getAvailableSettings = () => {
 		return allSettings.filter((tab) => {
 			if (tab.id === 'connections') {
-				return $config?.features?.enable_direct_connections;
+				return $user?.role === 'admin' && $config?.features?.enable_direct_connections;
 			}
 
 			if (tab.id === 'tools') {
@@ -640,7 +640,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'general';
@@ -664,7 +664,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'interface';
@@ -688,7 +688,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'connections';
@@ -713,7 +713,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 									on:click={() => {
 										selectedTab = 'tools';
@@ -738,7 +738,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'personalization';
@@ -762,7 +762,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'audio';
@@ -786,7 +786,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'data_controls';
@@ -810,7 +810,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'account';
@@ -834,7 +834,7 @@
 											: 'recube:text-[#EBB700]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
+											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[#EBB700]'
 								}`}
 								on:click={() => {
 									selectedTab = 'about';
