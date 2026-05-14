@@ -44,13 +44,19 @@
 				document.documentElement.classList.add('dark');
 				metaThemeColorTag.setAttribute('content', '#000000');
 			} else if (localStorage.theme === 'recube') {
+				const savedSidebar = localStorage.getItem('recube-sidebar') || '#00243E';
+				const savedBody = localStorage.getItem('recube-body') || '#026172';
+				const savedButton = localStorage.getItem('recube-button') || '#EBB700';
+
 				document.documentElement.style.setProperty('--color-gray-800', '#3D97AD');
-				document.documentElement.style.setProperty('--color-gray-850', '#026172');
-				document.documentElement.style.setProperty('--color-gray-900', '#026172');
-				document.documentElement.style.setProperty('--color-gray-950', '#00243E');
+				document.documentElement.style.setProperty('--color-gray-850', savedBody);
+				document.documentElement.style.setProperty('--color-gray-900', savedBody);
+				document.documentElement.style.setProperty('--color-gray-950', savedSidebar);
+				document.documentElement.style.setProperty('--recube-accent', savedButton);
+
 				document.documentElement.classList.add('dark');
 				document.documentElement.classList.add('recube');
-				metaThemeColorTag.setAttribute('content', '#00243E');
+				metaThemeColorTag.setAttribute('content', savedSidebar);
 			} else if (localStorage.theme === 'light') {
 				document.documentElement.classList.add('light');
 				metaThemeColorTag.setAttribute('content', '#ffffff');
