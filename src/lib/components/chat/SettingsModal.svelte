@@ -637,10 +637,10 @@
 									selectedTab === 'general'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 								on:click={() => {
 									selectedTab = 'general';
@@ -661,10 +661,10 @@
 									selectedTab === 'interface'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 								on:click={() => {
 									selectedTab = 'interface';
@@ -686,10 +686,10 @@
 									selectedTab === 'connections'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 									on:click={() => {
 										selectedTab = 'connections';
@@ -712,10 +712,10 @@
 									selectedTab === 'tools'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 									on:click={() => {
 										selectedTab = 'tools';
@@ -737,10 +737,10 @@
 									selectedTab === 'personalization'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 								on:click={() => {
 									selectedTab = 'personalization';
@@ -761,10 +761,10 @@
 									selectedTab === 'audio'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 								on:click={() => {
 									selectedTab = 'audio';
@@ -785,10 +785,10 @@
 									selectedTab === 'data_controls'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 								on:click={() => {
 									selectedTab = 'data_controls';
@@ -809,10 +809,10 @@
 									selectedTab === 'account'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 								on:click={() => {
 									selectedTab = 'account';
@@ -833,10 +833,10 @@
 									selectedTab === 'about'
 										? ($settings?.highContrastMode ?? false)
 											? 'dark:bg-gray-800 bg-gray-200'
-											: 'recube:text-[var(--recube-accent)]'
+											: 'bg-gray-100 dark:bg-gray-850 text-gray-900 dark:text-gray-100 recube:bg-transparent recube:text-[var(--recube-accent)]'
 										: ($settings?.highContrastMode ?? false)
 											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
+											: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100 recube:text-[#FFFFFF] recube:hover:text-[var(--recube-accent)]'
 								}`}
 								on:click={() => {
 									selectedTab = 'about';
@@ -860,7 +860,7 @@
 						draggable="false"
 						class="px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none md:mt-auto flex select-none text-left transition {$settings?.highContrastMode
 							? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-							: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'}"
+							: 'text-black dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-100'}"
 						on:click={async (e) => {
 							e.preventDefault();
 							await goto('/admin/settings');

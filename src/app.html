@@ -57,6 +57,16 @@
 				document.documentElement.classList.add('dark');
 				document.documentElement.classList.add('recube');
 				metaThemeColorTag.setAttribute('content', savedSidebar);
+			} else if (localStorage.theme === 'recube-scuro') {
+				document.documentElement.style.setProperty('--color-gray-900', '#000000');
+				document.documentElement.style.setProperty('--color-gray-950', '#000000');
+				document.documentElement.classList.add('dark');
+				document.documentElement.classList.add('recube-scuro');
+				metaThemeColorTag.setAttribute('content', '#000000');
+			} else if (localStorage.theme === 'recube-chiaro') {
+				document.documentElement.classList.add('light');
+				document.documentElement.classList.add('recube-chiaro');
+				metaThemeColorTag.setAttribute('content', '#ffffff');
 			} else if (localStorage.theme === 'light') {
 				document.documentElement.classList.add('light');
 				metaThemeColorTag.setAttribute('content', '#ffffff');
@@ -87,7 +97,14 @@
 			logo.id = 'logo';
 			logo.style =
 				'position: absolute; width: auto; height: 6rem; top: 44%; left: 50%; transform: translateX(-50%); display:block;';
-			logo.src = '/static/logo-recube.png';
+			
+			if (localStorage.theme === 'recube-scuro') {
+				logo.src = '/static/logo-recube-extended-theme-black.png';
+			} else if (localStorage.theme === 'recube-chiaro') {
+				logo.src = '/static/logo-recube-extended-theme-white.png';
+			} else {
+				logo.src = '/static/logo-recube.png';
+			}
 
 			document.addEventListener('DOMContentLoaded', function () {
 				const splash = document.getElementById('splash-screen');
@@ -157,6 +174,10 @@
 </body>
 
 <style type="text/css" nonce="">
+	html.recube-scuro #sidebar {
+		border-right: 1px solid #ffffff !important;
+	}
+
 	html {
 		overflow-y: hidden !important;
 		overscroll-behavior-y: none;

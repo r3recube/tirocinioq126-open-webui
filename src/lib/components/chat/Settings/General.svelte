@@ -14,7 +14,7 @@
 	export let getModels: Function;
 
 	// General
-	let themes = ['dark', 'light', 'oled-dark', 'recube'];
+	let themes = ['dark', 'light', 'oled-dark', 'recube', 'recube-chiaro', 'recube-scuro'];
 	let selectedTheme = 'system';
 	// personalizzazione tema recube
 	const recubePalette = ['#00243E', '#026172', '#3D97AD', '#EBB700', '#EC9400', '#FFFFFF'];
@@ -166,9 +166,11 @@
 				? 'dark'
 				: _theme === 'her'
 					? 'light'
-					: _theme === 'recube'
+					: _theme === 'recube' || _theme === 'recube-scuro'
 						? 'dark'
-						: _theme;
+						: _theme === 'recube-chiaro'
+							? 'light'
+							: _theme;
 
 		if (_theme === 'system') {
 			themeToApply = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -205,7 +207,7 @@
 				console.log('Setting meta theme color: ' + _theme);
 				metaThemeColor.setAttribute(
 					'content',
-					_theme === 'dark'
+					_theme === 'dark' || _theme === 'recube-scuro'
 						? '#171717'
 						: _theme === 'oled-dark'
 							? '#000000'
@@ -248,6 +250,14 @@
 			);
 			document.documentElement.classList.add('dark');
 			document.documentElement.classList.add('recube');
+		} else if (_theme === 'recube-scuro') {
+			document.documentElement.style.setProperty('--color-gray-900', '#000000');
+			document.documentElement.style.setProperty('--color-gray-950', '#000000');
+			document.documentElement.classList.add('dark');
+			document.documentElement.classList.add('recube-scuro');
+		} else if (_theme === 'recube-chiaro') {
+			document.documentElement.classList.add('light');
+			document.documentElement.classList.add('recube-chiaro');
 		}
 
 		console.log(_theme);
@@ -276,14 +286,9 @@
 						placeholder={$i18n.t('Select a theme')}
 						on:change={() => themeChangeHandler(selectedTheme)}
 					>
-						<option value="system">⚙️ {$i18n.t('System')}</option>
-						<option value="dark">🌑 {$i18n.t('Dark')}</option>
-						<option value="oled-dark">🌃 {$i18n.t('OLED Dark')}</option>
-						<option value="light">☀️ {$i18n.t('Light')}</option>
-						<option value="recube">Recube</option>
-						{#if $config?.features?.enable_easter_eggs}
-							<option value="her">🌷 Her</option>
-						{/if}
+						<option value="recube">Tema Personalizzato</option>
+						<option value="recube-scuro">Recube Scuro</option>
+						<option value="recube-chiaro">Recube Chiaro</option>
 					</select>
 				</div>
 			</div>
