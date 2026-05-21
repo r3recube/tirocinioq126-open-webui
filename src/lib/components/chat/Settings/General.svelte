@@ -14,8 +14,35 @@
 	export let getModels: Function;
 
 	// General
-	let themes = ['dark', 'light', 'oled-dark', 'recube'];
+	let themes = ['dark', 'light', 'oled-dark', 'recube', 'recube-chiaro', 'recube-scuro'];
 	let selectedTheme = 'system';
+	// personalizzazione tema recube
+	const recubePalette = ['#00243E', '#026172', '#3D97AD', '#EBB700', '#EC9400', '#FFFFFF'];
+	let sidebarColor = '#00243E';
+	let bodyColor = '#026172';
+	let buttonColor = '#EBB700';
+	const setRecubeColor = (type: string, color: string) => {
+		if (type === 'sidebar') {
+			sidebarColor = color;
+			localStorage.setItem('recube-sidebar', color);
+			if (selectedTheme === 'recube')
+				document.documentElement.style.setProperty('--color-gray-950', color);
+		}
+		if (type === 'body') {
+			bodyColor = color;
+			localStorage.setItem('recube-body', color);
+			if (selectedTheme === 'recube') {
+				document.documentElement.style.setProperty('--color-gray-900', color);
+				document.documentElement.style.setProperty('--color-gray-850', color);
+			}
+		}
+		if (type === 'button') {
+			buttonColor = color;
+			localStorage.setItem('recube-button', color);
+			if (selectedTheme === 'recube')
+				document.documentElement.style.setProperty('--recube-accent', color);
+		}
+	};
 
 	let languages: Awaited<ReturnType<typeof getLanguages>> = [];
 	let lang = $i18n.language;
@@ -109,6 +136,16 @@
 
 	onMount(async () => {
 		selectedTheme = localStorage.theme ?? 'system';
+		sidebarColor = localStorage.getItem('recube-sidebar') || '#00243E';
+		bodyColor = localStorage.getItem('recube-body') || '#026172';
+		buttonColor = localStorage.getItem('recube-button') || '#EBB700';
+
+		if (selectedTheme === 'recube') {
+			document.documentElement.style.setProperty('--color-gray-950', sidebarColor);
+			document.documentElement.style.setProperty('--color-gray-900', bodyColor);
+			document.documentElement.style.setProperty('--color-gray-850', bodyColor);
+			document.documentElement.style.setProperty('--recube-accent', buttonColor);
+		}
 
 		languages = await getLanguages();
 
@@ -129,9 +166,11 @@
 				? 'dark'
 				: _theme === 'her'
 					? 'light'
-					: _theme === 'recube'
+					: _theme === 'recube' || _theme === 'recube-scuro'
 						? 'dark'
-						: _theme;
+						: _theme === 'recube-chiaro'
+							? 'light'
+							: _theme;
 
 		if (_theme === 'system') {
 			themeToApply = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -168,7 +207,7 @@
 				console.log('Setting meta theme color: ' + _theme);
 				metaThemeColor.setAttribute(
 					'content',
-					_theme === 'dark'
+					_theme === 'dark' || _theme === 'recube-scuro'
 						? '#171717'
 						: _theme === 'oled-dark'
 							? '#000000'
@@ -193,11 +232,32 @@
 			document.documentElement.classList.add('dark');
 		} else if (_theme === 'recube') {
 			document.documentElement.style.setProperty('--color-gray-800', '#3D97AD');
-			document.documentElement.style.setProperty('--color-gray-850', '#026172');
-			document.documentElement.style.setProperty('--color-gray-900', '#026172');
-			document.documentElement.style.setProperty('--color-gray-950', '#00243E');
+			document.documentElement.style.setProperty(
+				'--color-gray-850',
+				localStorage.getItem('recube-body') || '#026172'
+			);
+			document.documentElement.style.setProperty(
+				'--color-gray-900',
+				localStorage.getItem('recube-body') || '#026172'
+			);
+			document.documentElement.style.setProperty(
+				'--color-gray-950',
+				localStorage.getItem('recube-sidebar') || '#00243E'
+			);
+			document.documentElement.style.setProperty(
+				'--recube-accent',
+				localStorage.getItem('recube-button') || '#EBB700'
+			);
 			document.documentElement.classList.add('dark');
 			document.documentElement.classList.add('recube');
+		} else if (_theme === 'recube-scuro') {
+			document.documentElement.style.setProperty('--color-gray-900', '#000000');
+			document.documentElement.style.setProperty('--color-gray-950', '#000000');
+			document.documentElement.classList.add('dark');
+			document.documentElement.classList.add('recube-scuro');
+		} else if (_theme === 'recube-chiaro') {
+			document.documentElement.classList.add('light');
+			document.documentElement.classList.add('recube-chiaro');
 		}
 
 		console.log(_theme);
@@ -226,18 +286,69 @@
 						placeholder={$i18n.t('Select a theme')}
 						on:change={() => themeChangeHandler(selectedTheme)}
 					>
-						<option value="system">⚙️ {$i18n.t('System')}</option>
-						<option value="dark">🌑 {$i18n.t('Dark')}</option>
-						<option value="oled-dark">🌃 {$i18n.t('OLED Dark')}</option>
-						<option value="light">☀️ {$i18n.t('Light')}</option>
-						<option value="recube">Recube</option>
-						{#if $config?.features?.enable_easter_eggs}
-							<option value="her">🌷 Her</option>
-						{/if}
+						<option value="recube">Tema Personalizzato</option>
+						<option value="recube-scuro">Recube Scuro</option>
+						<option value="recube-chiaro">Recube Chiaro</option>
 					</select>
 				</div>
 			</div>
 
+			{#if selectedTheme === 'recube'}
+				<div class="mt-4 space-y-4 border-t border-gray-100/30 dark:border-gray-850/30 pt-4 pb-2">
+					<div class="text-sm font-medium">Personalizzazione Colori Recube</div>
+
+					<div class="flex w-full justify-between items-center">
+						<div class="text-xs font-medium">Colore barra laterale</div>
+						<div class="flex gap-1.5 pr-2">
+							{#each recubePalette.slice(0, 5) as color}
+								<button
+									type="button"
+									class="w-5 h-5 rounded-full outline-hidden focus:outline-hidden border-2 transition-transform hover:scale-110 {sidebarColor ===
+									color
+										? 'border-gray-400 dark:border-white'
+										: 'border-gray-400/50'}"
+									style="background-color: {color};"
+									on:click={() => setRecubeColor('sidebar', color)}
+								></button>
+							{/each}
+						</div>
+					</div>
+
+					<div class="flex w-full justify-between items-center">
+						<div class="text-xs font-medium">Colore sfondo</div>
+						<div class="flex gap-1.5 pr-2">
+							{#each recubePalette.slice(0, 2) as color}
+								<button
+									type="button"
+									class="w-5 h-5 rounded-full outline-hidden focus:outline-hidden border-2 transition-transform hover:scale-110 {bodyColor ===
+									color
+										? 'border-gray-400 dark:border-white'
+										: 'border-gray-400/50'}"
+									style="background-color: {color};"
+									on:click={() => setRecubeColor('body', color)}
+								></button>
+							{/each}
+						</div>
+					</div>
+
+					<div class="flex w-full justify-between items-center">
+						<div class="text-xs font-medium">Colore pulsanti</div>
+						<div class="flex gap-1.5 pr-2">
+							{#each recubePalette.slice(2) as color}
+								<button
+									type="button"
+									class="w-5 h-5 rounded-full outline-hidden focus:outline-hidden border-2 transition-transform hover:scale-110 {buttonColor ===
+									color
+										? 'border-gray-400 dark:border-white'
+										: 'border-gray-400/50'}"
+									style="background-color: {color};"
+									on:click={() => setRecubeColor('button', color)}
+								></button>
+							{/each}
+						</div>
+					</div>
+				</div>
+			{/if}
 			<div class=" flex w-full justify-between">
 				<div class=" self-center text-xs font-medium">{$i18n.t('Language')}</div>
 				<div class="flex items-center relative">
@@ -343,7 +454,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
-			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[#EBB700] recube:text-black recube:hover:bg-[#EC9400] transition rounded-full"
+			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[var(--recube-accent)] recube:text-black recube:hover:opacity-80 transition rounded-full"
 			on:click={() => {
 				saveHandler();
 			}}

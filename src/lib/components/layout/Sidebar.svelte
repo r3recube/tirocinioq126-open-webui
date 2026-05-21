@@ -27,7 +27,8 @@
 		selectedFolder,
 		WEBUI_NAME,
 		sidebarWidth,
-		activeChatIds
+		activeChatIds,
+		theme
 	} from '$lib/stores';
 	import { onMount, getContext, tick, onDestroy } from 'svelte';
 
@@ -713,7 +714,11 @@
 					>
 						<div class=" self-center flex items-center justify-center size-9">
 							<img
-								src="/static/logo-recube-sidebar.jpg"
+								src={$theme === 'recube-scuro'
+									? '/static/logo-recube-black-theme-black.png'
+									: $theme === 'recube-chiaro'
+										? '/static/logo-recube-white-theme-white.png'
+										: '/static/logo-recube-sidebar.jpg'}
 								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
 								alt=""
 							/>
@@ -908,7 +913,11 @@
 				>
 					<img
 						crossorigin="anonymous"
-						src="/static/logo-recube-sidebar.jpg"
+						src={$theme === 'recube-scuro'
+							? '/static/logo-recube-black-theme-black.png'
+							: $theme === 'recube-chiaro'
+								? '/static/logo-recube-white-theme-white.png'
+								: '/static/logo-recube-sidebar.jpg'}
 						class="sidebar-new-chat-icon size-6 rounded-full"
 						alt=""
 					/>
