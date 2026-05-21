@@ -1016,6 +1016,23 @@
 									</button>
 								</Tooltip>
 
+								{#if !readOnly}
+									<Tooltip content="Riassumi" placement="bottom">
+										<button
+											aria-label="Riassumi"
+											class="{isLastMessage || ($settings?.highContrastMode ?? false) ? 'visible' : 'invisible group-hover:visible'} p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg dark:hover:text-white hover:text-black transition flex items-center gap-1 text-xs font-semibold"
+											on:click={() => {
+												setInputText(`Riassumi in breve questo messaggio:\n\n${message.content}`);
+											}}
+										>
+											<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+											</svg>
+											<span></span>
+										</button>
+									</Tooltip>
+								{/if}
+
 								{#if !readOnly && ($user?.role === 'admin' || ($user?.permissions?.chat?.tts ?? true))}
 									<Tooltip content={$i18n.t('Read Aloud')} placement="bottom">
 										<button

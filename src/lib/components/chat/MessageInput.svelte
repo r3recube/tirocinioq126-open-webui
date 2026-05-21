@@ -141,7 +141,7 @@
 	export let onQueueDelete: (id: string) => void = () => {};
 
 	let inputContent = null;
-
+	let selectedTone = 'normale';
 	let showInputVariablesModal = false;
 	let inputVariablesModalCallback = (variableValues) => {};
 	let inputVariables = {};
@@ -1207,8 +1207,15 @@
 					<form
 						class="w-full flex flex-col gap-1.5 {recording ? 'hidden' : ''}"
 						on:submit|preventDefault={() => {
-							// check if selectedModels support image input
-							dispatch('submit', prompt);
+							let finalPrompt = prompt;
+							if (selectedTone === 'legale') {
+								finalPrompt += "\n\n[ISTRUZIONE DI SISTEMA: Riformula adottando un tono strettamente legale e contrattuale, usando la terminologia appropriata.]";
+							} else if (selectedTone === 'commerciale') {
+								finalPrompt += "\n\n[ISTRUZIONE DI SISTEMA: Riformula come se fosse un'email commerciale persuasiva, professionale e orientata al cliente.]";
+							} else if (selectedTone === 'semplice') {
+								finalPrompt += "\n\n[ISTRUZIONE DI SISTEMA: Spiega il concetto in modo estremamente semplice, come se stessi parlando a una persona senza competenze tecniche.]";
+							}
+							dispatch('submit', finalPrompt);
 						}}
 					>
 						<button
@@ -1394,6 +1401,14 @@
 									{#if suggestions}
 										{#key $settings?.richTextInput ?? true}
 											{#key $settings?.showFormattingToolbar ?? false}
+																							<div class="px-2 pb-1">
+													<select bind:value={selectedTone} class="bg-transparent border-none text-gray-500 dark:text-gray-400 text-xs rounded-lg focus:ring-0 block px-2 py-1 outline-none w-fit cursor-pointer font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+														<option value="normale">Tono: Normale</option>
+														<option value="legale">Tono: Legale</option>
+														<option value="commerciale">Tono: Commerciale</option>
+														<option value="semplice">Tono: Semplificato</option>
+													</select>
+												</div>
 												<RichTextInput
 													bind:this={chatInputElement}
 													id="chat-input"
