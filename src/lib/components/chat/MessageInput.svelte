@@ -1401,13 +1401,22 @@
 									{#if suggestions}
 										{#key $settings?.richTextInput ?? true}
 											{#key $settings?.showFormattingToolbar ?? false}
-																							<div class="px-2 pb-1">
+												<div class="px-2 pb-1 flex items-center flex-wrap">
 													<select bind:value={selectedTone} class="bg-transparent border-none text-gray-500 dark:text-gray-400 text-xs rounded-lg focus:ring-0 block px-2 py-1 outline-none w-fit cursor-pointer font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition">
 														<option value="normale">Tono: Normale</option>
 														<option value="legale">Tono: Legale</option>
 														<option value="commerciale">Tono: Commerciale</option>
 														<option value="semplice">Tono: Semplificato</option>
 													</select>
+													<span class="text-xs text-gray-500 dark:text-gray-400 ml-2">
+														{#if selectedTone === 'legale'}
+															(Linguaggio formale, contrattuale e giuridico)
+														{:else if selectedTone === 'commerciale'}
+															(Stile persuasivo e professionale orientato al cliente)
+														{:else if selectedTone === 'semplice'}
+															(Spiegazione elementare, senza tecnicismi)
+														{/if}
+													</span>
 												</div>
 												<RichTextInput
 													bind:this={chatInputElement}
