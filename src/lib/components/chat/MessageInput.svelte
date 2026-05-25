@@ -1640,7 +1640,7 @@
 									>
 										<div
 											id="input-menu-button"
-											class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 recube:text-[var(--recube-accent)] recube:hover:opacity-80 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
+											class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 recube:text-[var(--recube-accent)] recube:hover:opacity-80 recube-petrolio:!text-[var(--recube-accent)] rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
 										>
 											<PlusAlt className="size-5.5" />
 										</div>
@@ -1679,7 +1679,7 @@
 										>
 											<div
 												id="integration-menu-button"
-												class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 recube:text-[var(--recube-accent)] recube:hover:opacity-80 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
+												class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 recube:text-[var(--recube-accent)] recube:hover:opacity-80 recube-petrolio:!text-[var(--recube-accent)] rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
 											>
 												<Component className="size-4.5" strokeWidth="1.5" />
 											</div>
@@ -1692,7 +1692,7 @@
 												<button
 													type="button"
 													id="model-valves-button"
-													class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 recube:text-[var(--recube-accent)] recube:hover:opacity-80 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
+													class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 recube:text-[var(--recube-accent)] recube:hover:opacity-80 recube-petrolio:!text-[var(--recube-accent)] rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
 													on:click={() => {
 														selectedValvesType = 'function';
 														selectedValvesItemId = selectedModelIds[0]?.split('.')[0];
@@ -1905,7 +1905,7 @@
 												<Tooltip content={$i18n.t('Dictate')}>
 													<button
 														id="voice-input-button"
-														class=" bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[var(--recube-accent)] recube:text-black recube:hover:text-black recube:hover:opacity-80 transition rounded-full p-1.5 self-center mr-0.5"
+														class=" bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[var(--recube-accent)] recube:text-black recube:hover:text-black recube:hover:opacity-80 recube-petrolio:bg-transparent recube-petrolio:text-[var(--recube-accent)] recube-petrolio:border recube-petrolio:border-[var(--recube-accent)] transition rounded-full p-1.5 self-center mr-0.5"
 														type="button"
 														on:click={async () => {
 															try {
@@ -1957,7 +1957,7 @@
 												<Tooltip content={$i18n.t('Voice mode')}>
 													<button
 														id="call-button"
-														class=" bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[var(--recube-accent)] recube:text-black recube:hover:text-black recube:hover:opacity-80 transition rounded-full p-1.5 self-center"
+														class=" bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[var(--recube-accent)] recube:text-black recube:hover:text-black recube:hover:opacity-80 recube-petrolio:bg-transparent recube-petrolio:text-[var(--recube-accent)] recube-petrolio:border recube-petrolio:border-[var(--recube-accent)] transition rounded-full p-1.5 self-center"
 														type="button"
 														on:click={async () => {
 															if (selectedModels.length > 1) {
@@ -2025,7 +2025,7 @@
 													<button
 														id="send-message-button"
 														class="{!(prompt === '' && files.length === 0) || uploadPending
-															? 'bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[var(--recube-accent)] recube:text-black recube:hover:opacity-80 recube:hover:text-black '
+															? 'bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 recube:bg-[var(--recube-accent)] recube:text-black recube:hover:opacity-80 recube:hover:text-black recube-petrolio:bg-transparent recube-petrolio:text-[var(--recube-accent)] recube-petrolio:border recube-petrolio:border-[var(--recube-accent)] '
 															: 'text-white bg-gray-200 dark:text-gray-900 dark:bg-gray-700 disabled'} transition rounded-full p-1.5 self-center"
 														type="submit"
 														disabled={(prompt === '' && files.length === 0) || uploadPending}

@@ -718,7 +718,7 @@
 									? '/static/logo-recube-black-theme-black.png'
 									: $theme === 'recube-chiaro'
 										? '/static/logo-recube-white-theme-white.png'
-										: $theme === 'recube-crema'
+										: $theme === 'recube-crema' || $theme === 'recube-petrolio'
 											? '/static/logo-recube-orange.png'
 											: '/static/logo-recube-sidebar.jpg'}
 								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
@@ -919,7 +919,7 @@
 							? '/static/logo-recube-black-theme-black.png'
 							: $theme === 'recube-chiaro'
 								? '/static/logo-recube-white-theme-white.png'
-								: $theme === 'recube-crema'
+								: $theme === 'recube-crema' || $theme === 'recube-petrolio'
 									? '/static/logo-recube-orange.png'
 									: '/static/logo-recube-sidebar.jpg'}
 						class="sidebar-new-chat-icon h-8 w-auto object-contain"
