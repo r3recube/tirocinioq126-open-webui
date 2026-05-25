@@ -14,7 +14,7 @@
 	export let getModels: Function;
 
 	// General
-	let themes = ['dark', 'light', 'oled-dark', 'recube', 'recube-chiaro', 'recube-scuro'];
+	let themes = ['dark', 'light', 'oled-dark', 'recube', 'recube-chiaro', 'recube-scuro', 'recube-crema'];
 	let selectedTheme = 'system';
 	// personalizzazione tema recube
 	const recubePalette = ['#00243E', '#026172', '#3D97AD', '#EBB700', '#EC9400', '#FFFFFF'];
@@ -168,7 +168,7 @@
 					? 'light'
 					: _theme === 'recube' || _theme === 'recube-scuro'
 						? 'dark'
-						: _theme === 'recube-chiaro'
+						: _theme === 'recube-chiaro' || _theme === 'recube-crema'
 							? 'light'
 							: _theme;
 
@@ -215,7 +215,9 @@
 								? '#983724'
 								: _theme === 'recube'
 									? '#00243E'
-									: '#ffffff'
+									: _theme === 'recube-crema'
+										? '#005D60'
+									    : '#ffffff'
 				);
 			}
 		}
@@ -258,6 +260,14 @@
 		} else if (_theme === 'recube-chiaro') {
 			document.documentElement.classList.add('light');
 			document.documentElement.classList.add('recube-chiaro');
+		} else if (_theme === 'recube-crema') {
+			document.documentElement.style.setProperty('--color-gray-800', '#005D60');
+			document.documentElement.style.setProperty('--color-gray-850', '#FAF6F0');
+			document.documentElement.style.setProperty('--color-gray-900', '#FAF6F0');
+			document.documentElement.style.setProperty('--color-gray-950', '#005D60');
+			document.documentElement.style.setProperty('--recube-accent', '#E89300');
+			document.documentElement.classList.add('light');
+			document.documentElement.classList.add('recube-crema');
 		}
 
 		console.log(_theme);
@@ -289,6 +299,7 @@
 						<option value="recube">Tema Personalizzato</option>
 						<option value="recube-scuro">Recube Scuro</option>
 						<option value="recube-chiaro">Recube Chiaro</option>
+						<option value="recube-crema">Recube Crema</option>
 					</select>
 				</div>
 			</div>

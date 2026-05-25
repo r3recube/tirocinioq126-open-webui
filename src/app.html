@@ -67,6 +67,15 @@
 				document.documentElement.classList.add('light');
 				document.documentElement.classList.add('recube-chiaro');
 				metaThemeColorTag.setAttribute('content', '#ffffff');
+			} else if (localStorage.theme === 'recube-crema') {
+				document.documentElement.style.setProperty('--color-gray-800', '#005D60');
+				document.documentElement.style.setProperty('--color-gray-850', '#FAF6F0');
+				document.documentElement.style.setProperty('--color-gray-900', '#FAF6F0');
+				document.documentElement.style.setProperty('--color-gray-950', '#005D60');
+				document.documentElement.style.setProperty('--recube-accent', '#E89300');
+				document.documentElement.classList.add('light');
+				document.documentElement.classList.add('recube-crema');
+				metaThemeColorTag.setAttribute('content', '#005D60');
 			} else if (localStorage.theme === 'light') {
 				document.documentElement.classList.add('light');
 				metaThemeColorTag.setAttribute('content', '#ffffff');
@@ -102,6 +111,8 @@
 				logo.src = '/static/logo-recube-extended-theme-black.png';
 			} else if (localStorage.theme === 'recube-chiaro') {
 				logo.src = '/static/logo-recube-extended-theme-white.png';
+			} else if (localStorage.theme === 'recube-crema') {
+				logo.src = '/static/logo-recube-orange.png'; 
 			} else {
 				logo.src = '/static/logo-recube.png';
 			}
@@ -193,6 +204,10 @@
 
 	html.recube #splash-screen {
 		background: #00243E;
+	}
+
+		html.recube-crema #splash-screen {
+		background: #FAF6F0;
 	}
 
 	html.her #splash-screen {

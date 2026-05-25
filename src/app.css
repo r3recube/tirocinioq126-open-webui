@@ -815,3 +815,80 @@ body {
 #note-content-container .ProseMirror {
 	padding-bottom: 2rem; /* space for the bottom toolbar */
 }
+
+html.recube-crema #sidebar {
+    background-color: #005D60;
+    color: #FFFFFF;
+}
+
+html.recube-crema #sidebar .sidebar-bg-gradient-to-b,
+html.recube-crema #sidebar .sidebar-bg-gradient-to-t{
+    background: transparent;
+}
+
+html.recube-crema #sidebar .text-black,
+html.recube-crema #sidebar .text-gray-900,
+html.recube-crema #sidebar .text-gray-800,
+html.recube-crema #sidebar .text-gray-700 {
+    color: #FFFFFF;
+}
+
+html.recube-crema #sidebar .hover\:bg-gray-50\/30:hover,
+html.recube-crema #sidebar .hover\:bg-gray-100:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+html.recube-crema #sidebar svg {
+    stroke: #FFFFFF;
+    fill: none; 
+}
+
+html.recube-crema #input-menu-button,
+html.recube-crema #integration-menu-button,
+html.recube-crema #model-valves-button,
+html.recube-crema .chat-input-button {
+    color: #005D60;
+}
+
+html.recube-crema #input-menu-button svg,
+html.recube-crema #integration-menu-button svg,
+html.recube-crema .chat-input-button svg {
+    stroke: #005D60;
+}
+
+html.recube-crema #voice-input-button,
+html.recube-crema #call-button {
+    background-color: transparent;
+    border: 1px solid #005d60;
+    color: #005D60;
+}
+#voice-input-button:hover,
+#call-button:hover {
+  background-color: rgba(0, 93, 96, 0.12);
+}
+
+html.recube-crema #voice-input-button svg,
+html.recube-crema #call-button svg {
+    stroke: #005D60;
+	color: #005D60;
+}
+
+html.recube-crema #send-message-button {
+    background-color: #005D60;
+    color: #FFFFFF;
+}
+
+html.recube-crema #send-message-button svg {
+    stroke: #FFFFFF;
+    fill: #FFFFFF;
+}
+
+
+html.recube-crema #settings-tabs-container button[aria-selected="true"] {
+    background-color: #005D60;
+    color: #FFFFFF;
+}
+
+html.recube-crema #settings-tabs-container button[aria-selected="true"] svg {
+    stroke: #FFFFFF;
+}

@@ -718,7 +718,9 @@
 									? '/static/logo-recube-black-theme-black.png'
 									: $theme === 'recube-chiaro'
 										? '/static/logo-recube-white-theme-white.png'
-										: '/static/logo-recube-sidebar.jpg'}
+										: $theme === 'recube-crema'
+											? '/static/logo-recube-orange.png'
+											: '/static/logo-recube-sidebar.jpg'}
 								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
 								alt=""
 							/>
@@ -917,8 +919,10 @@
 							? '/static/logo-recube-black-theme-black.png'
 							: $theme === 'recube-chiaro'
 								? '/static/logo-recube-white-theme-white.png'
-								: '/static/logo-recube-sidebar.jpg'}
-						class="sidebar-new-chat-icon size-6 rounded-full"
+								: $theme === 'recube-crema'
+									? '/static/logo-recube-orange.png'
+									: '/static/logo-recube-sidebar.jpg'}
+						class="sidebar-new-chat-icon h-8 w-auto object-contain"
 						alt=""
 					/>
 				</a>
@@ -928,7 +932,7 @@
 						id="sidebar-webui-name"
 						class=" self-center font-medium text-gray-850 dark:text-white font-primary"
 					>
-						Recube
+						
 					</div>
 				</a>
 				<Tooltip
