@@ -895,12 +895,12 @@ html.recube-crema #settings-tabs-container button[aria-selected="true"] svg {
 
 html.recube-crema #settings-modal-wrapper button.bg-black,
 html.recube-crema #admin-settings-modal-wrapper button.bg-black {
-    background-color: #005D60 !important;
-    color: #FFFFFF !important;
+    background-color: #005D60 ;
+    color: #FFFFFF ;
 }
 
 html.recube-crema #settings-modal-wrapper button.bg-black:hover,
 html.recube-crema #admin-settings-modal-wrapper button.bg-black:hover {
-    opacity: 0.8 !important;
-    background-color: #005D60 !important;
+    opacity: 0.8 ;
+    background-color: #005D60;
 }
