@@ -92,3 +92,4 @@
 
 @custom-variant hover (&:hover);
 @custom-variant recube (.recube &);
+@custom-variant recube-petrolio (.recube-petrolio &);

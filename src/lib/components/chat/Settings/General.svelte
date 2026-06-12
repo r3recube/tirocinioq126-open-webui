@@ -14,7 +14,7 @@
 	export let getModels: Function;
 
 	// General
-	let themes = ['dark', 'light', 'oled-dark', 'recube', 'recube-chiaro', 'recube-scuro'];
+	let themes = ['dark', 'light', 'oled-dark', 'recube', 'recube-chiaro', 'recube-scuro', 'recube-crema', 'recube-petrolio'];
 	let selectedTheme = 'system';
 	// personalizzazione tema recube
 	const recubePalette = ['#00243E', '#026172', '#3D97AD', '#EBB700', '#EC9400', '#FFFFFF'];
@@ -166,9 +166,9 @@
 				? 'dark'
 				: _theme === 'her'
 					? 'light'
-					: _theme === 'recube' || _theme === 'recube-scuro'
+					: _theme === 'recube' || _theme === 'recube-scuro' || _theme === 'recube-petrolio'
 						? 'dark'
-						: _theme === 'recube-chiaro'
+						: _theme === 'recube-chiaro' || _theme === 'recube-crema'
 							? 'light'
 							: _theme;
 
@@ -215,7 +215,11 @@
 								? '#983724'
 								: _theme === 'recube'
 									? '#00243E'
-									: '#ffffff'
+									: _theme === 'recube-crema'
+										? '#005D60'
+									    : _theme === 'recube-petrolio'
+											? '#052429'
+									    	: '#ffffff'
 				);
 			}
 		}
@@ -258,6 +262,23 @@
 		} else if (_theme === 'recube-chiaro') {
 			document.documentElement.classList.add('light');
 			document.documentElement.classList.add('recube-chiaro');
+		} else if (_theme === 'recube-crema') {
+			document.documentElement.style.setProperty('--color-gray-800', '#005D60');
+			document.documentElement.style.setProperty('--color-gray-850', '#FAF6F0');
+			document.documentElement.style.setProperty('--color-gray-900', '#FAF6F0');
+			document.documentElement.style.setProperty('--color-gray-950', '#005D60');
+			document.documentElement.style.setProperty('--recube-accent', '#E89300');
+			document.documentElement.classList.add('light');
+			document.documentElement.classList.add('recube-crema');
+		} else if (_theme === 'recube-petrolio') {
+			document.documentElement.style.setProperty('--color-gray-800', '#009194');
+			document.documentElement.style.setProperty('--color-gray-850', '#0A1317');
+			document.documentElement.style.setProperty('--color-gray-900', '#0A1317');
+			document.documentElement.style.setProperty('--color-gray-950', '#052429');
+			document.documentElement.style.setProperty('--recube-accent', '#009194');
+			document.documentElement.classList.add('dark');
+			document.documentElement.classList.add('recube');
+			document.documentElement.classList.add('recube-petrolio');
 		}
 
 		console.log(_theme);
@@ -289,6 +310,8 @@
 						<option value="recube">Tema Personalizzato</option>
 						<option value="recube-scuro">Recube Scuro</option>
 						<option value="recube-chiaro">Recube Chiaro</option>
+						<option value="recube-crema">Recube Crema</option>
+						<option value="recube-petrolio">Recube Petrolio</option>
 					</select>
 				</div>
 			</div>
